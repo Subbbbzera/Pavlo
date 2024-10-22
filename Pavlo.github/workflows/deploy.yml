@@ -1,0 +1,32 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js (якщо це Node.js проект)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build 
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.8.11
+        with:
+          heroku_api_key: ${{ HRKU-98dca45f-3b98-4ca3-b12c-be55ac069b07 }}
+          heroku_app_name: ${{ pavlo }}
+          heroku_email: pfitcailo@gmail.com 
